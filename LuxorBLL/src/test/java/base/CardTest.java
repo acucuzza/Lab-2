@@ -31,9 +31,10 @@ public class CardTest {
 
 	@Test
 	public void testGetters() {
-		Card card = new Card(eSuit.Clubs , eRank.Four);
+		Card card = new Card(eSuit.Clubs , eRank.Four, 4);
 		assertTrue(card.geteRank() == eRank.Four);
 		assertTrue(card.geteSuit() == eSuit.Clubs);
+		assertTrue(card.getNumberInDeck() == 4);
 	}
 	
 

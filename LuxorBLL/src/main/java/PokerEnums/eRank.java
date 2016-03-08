@@ -18,6 +18,7 @@ public enum eRank {
 	Queen(12),
 	King(13),
 	Ace(14),
+	Joker(15)
 	;
 	private int value;
 	
