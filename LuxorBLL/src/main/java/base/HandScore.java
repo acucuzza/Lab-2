@@ -1,42 +1,45 @@
 package base;
 import java.util.ArrayList;
-public class HandScore {
+import java.util.Collections;
+import java.util.Comparator;
+import PokerEnums.eHandStrength;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+public class HandScore{
 	
 	//Create variables for hand strength.
-	
-	public ArrayList <Card> Kicker = new ArrayList<Card>();
-	public int Strength;
-	public int HighHand;
-	public int LowHand;
+	ArrayList <Card> Kicker = new ArrayList<Card>();
+	private eHandStrength HandStrength;
+	int HighHand;
+	int LowHand;
 	
 	//Overloading
 	public HandScore(){	
 	}
 	
 	//Generate Constructor
-	public HandScore(int strength, int highHand, int lowHand, ArrayList<Card> kicker) {
+	public HandScore(PokerEnums.eHandStrength handStrength, int highHand, int lowHand, ArrayList<Card> kicker) {
 		super();
 		Kicker = kicker;
-		Strength = strength;
+		HandStrength = handStrength;
 		HighHand = highHand;
 		LowHand = lowHand;
 	}
 
-	//Generate Getters and Setters.
 	public ArrayList<Card> getKicker() {
 		return Kicker;
 	}
-
+	
 	public void setKicker(ArrayList<Card> kicker) {
 		Kicker = kicker;
 	}
 
-	public int getStrength() {
-		return Strength;
+	public PokerEnums.eHandStrength getStrength() {
+		return HandStrength;
 	}
 
-	public void setStrength(int strength) {
-		Strength = strength;
+	public void setStrength(PokerEnums.eHandStrength handStrength) {
+		HandStrength = handStrength;
 	}
 
 	public int getHighHand() {
@@ -54,4 +57,9 @@ public class HandScore {
 	public void setLowHand(int lowHand) {
 		LowHand = lowHand;
 	}
+	
+	public PokerEnums.eHandStrength testHand(){
+		return HandStrength;
+	}
+	
 }
