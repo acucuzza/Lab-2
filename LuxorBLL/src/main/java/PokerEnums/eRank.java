@@ -20,12 +20,12 @@ public enum eRank {
 	Ace(14),
 	Joker(15)
 	;
-	private int value;
+	private int NumberInDeck;
 	
-	private eRank (int numericalValue){
-		value = numericalValue;
+	private eRank (int NumberInDeck){
+		this.NumberInDeck = NumberInDeck;
 	}
-	public int getValue(){
-		return value;
+	public int getNumberInDeck(){
+		return NumberInDeck;
 	}
 }

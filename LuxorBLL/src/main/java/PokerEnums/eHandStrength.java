@@ -1,67 +1,72 @@
 package PokerEnums;
 
 public enum eHandStrength {
-	RoyalFlush(100, "RoyalFlush"),
-	StraightFlush(90, "StraightFlush"),
-	FourOfAKind(80, "FourOfAKind"),
-	FullHouse(70, "FullHouse"),
-	Flush(60, "Flush"),
-	Straight(50, "Straight"),
-	ThreeOfAKind(40, "ThreeOfAKind"),
-	TwoPair(30, "TwoPair"),
-	OnePair(20, "OnePair"),
-	HighCard(10, "HighCard")
-	;
-	
-	private int HandStrength;
-	private String HandTitle;
-
-	private eHandStrength(int HandStrength, String HandTitle) {
-		this.HandStrength = HandStrength;
-		this.HandTitle = HandTitle;
-	}
- 
-	public void HandDetails() {
-		switch (HandStrength) {
-		case 10:
-			System.out.println("You Don't Have any Pairs.");
-			break;
- 
-		case 20:
-			System.out.println("You Have One Pair.");
-			break;
- 
-		case 30:
-			System.out.println("You Have Two Pair.");
-			break;
- 
-		case 40:
-			System.out.println("You Have Three of A Kind.");
-			break;
- 
-		case 50:
-			System.out.println("You Have a Straight.");
-			break;
-			
-		case 60:
-			System.out.println("You Have a Flush.");
-			break;
-			
-		case 70:
-			System.out.println("You Have a Full House.");
-			break;
-			
-		case 80:
-			System.out.println("You Have Four of a Kind.");
-			break;
-			
-		case 90:
-			System.out.println("You Have a Straight Flush.");
-			break;
-			
-		case 100:
-			System.out.println("You Have a Royal Flush.");
-			break;
+	RoyalFlush(100, "RoyalFlush") {
+		public String toString() {
+			return "Royal Flush";
 		}
+	},
+	StraightFlush(90, "StraightFlush") {
+		public String toString() {
+			return "Straight Flush";
+		}
+	},
+	FourOfAKind(80, "FourOfAKind") {
+		public String toString() {
+			return "Four of a Kind";
+		}
+	},
+	FullHouse(70, "FullHouse") {
+		public String toString() {
+			return "Full House";
+		}
+	},
+	Flush(60, "Flush") {
+		public String toString() {
+			return "Flush";
+		}
+	},
+	Straight(50, "Straight") {
+		public String toString() {
+			return "Straight";
+		}
+	},
+	ThreeOfAKind(40, "ThreeOfAKind") {
+		public String toString() {
+			return "Three of a Kind";
+		}
+	},
+	TwoPair(30, "TwoPair") {
+		public String toString() {
+			return "Two Pairs";
+		}
+	},
+
+	Pair(20, "Pair") {
+		public String toString() {
+			return "One Pair";
+		}
+	},
+	HighCard(10, "HighCard") {
+		public String toString() {
+			return "High Card";
+		}
+	};
+
+	private eHandStrength(final int Strength, final String Type) {
+		this.iStrength = Strength;
+		this.strType = Type;
 	}
+
+	private int iStrength;
+	private String strType;
+
+	public int getHandStrength() {
+		return iStrength;
+	}
+
+	public String getEvaluation() {
+		return this.strType;
+	}
+
 }

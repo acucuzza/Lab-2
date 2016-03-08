@@ -1,86 +1,106 @@
 package base;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import PokerEnums.eRank;
-import PokerEnums.eSuit;
-import PokerEnums.eHandStrength;
-import base.Card;
-//import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import PokerEnums.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.lang.reflect.InvocationTargetException;
 
-public class Hand extends Deck{
+
+@SuppressWarnings("unused")
+public class Hand extends Deck {
+	private ArrayList<Card> CardsInHand;
+	private ArrayList<Card> BestInHand;
+	private HandScore HandScore;
+	private boolean bScored = false;
 	
-	ArrayList <Card> Hand = new ArrayList<Card>();
+	//Create Constructor
+	public Hand() {
+		BestInHand = new ArrayList<Card>();
+		CardsInHand = new ArrayList<Card>();
+		for(int i=CardsInHand.size(); i<5; i++ ){
+			CardsInHand.add(Draw());	
+			}
+		}
 	
-	// This method is calling the Draw function from Deck to get five cards.
-	public Hand(ArrayList <Card> hand){
-		for(int counter = 0; counter < 5; counter++){
-			hand.add(Draw());
-		}	
+	//Generate Getters and Setters
+	public ArrayList<Card> getCardsInHand() {
+		return CardsInHand;
 	}
-	//This method is to be completed, but as of now will return true if there is a straight involving an Ace
-	public boolean isStraight(){
-		if (Hand.size() != 5){
-			return false;
+
+	public void setCardsInHand(ArrayList<Card> cardsInHand) {
+		CardsInHand = cardsInHand;
+	}
+
+	public ArrayList<Card> getBestInHand() {
+		return BestInHand;
+	}
+
+	public void setBestInHand(ArrayList<Card> bestInHand) {
+		BestInHand = bestInHand;
+	}
+
+	public HandScore getHandScore() {
+		return HandScore;
+	}
+
+	public void setHandScore(HandScore handScore) {
+		HandScore = handScore;
+	}
+
+	public boolean isbScored() {
+		return bScored;
+	}
+
+	public void setbScored(boolean bScored) {
+		this.bScored = bScored;
+	}
+	
+	public void AddCard(){
+		if (CardsInHand.size() != 5){
+			for(int i=CardsInHand.size(); i<5; i++ ){
+				CardsInHand.add(Draw());
+			}
 		}
-		else if (isAceStraight()){
-			return true;
-		}
-		else if (Hand.get(0).geteRank() == eRank.Ace && Hand.get(1).geteRank() == eRank.Five && Hand.get(2).geteRank() == eRank.Four && Hand.get(3).geteRank() == eRank.Three && Hand.get(4).geteRank() == eRank.Two){
-			return true;
-		}
-		else {
+	}
+	
+	//Evaluation Method
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Hand Evaluate(Hand hand){
+		Collections.sort(hand.getCardsInHand());
+		HandScore HS = new HandScore();
+		try{
+			Class<?> n = Class.forName("base.Hand");
+			for(eHandStrength str : eHandStrength.values()){
+				Class[] Args = new Class[2];
+				Args[0] = base.Hand.class;
+				Args[1] = base.HandScore.class;
+				
+				Method method = n.getMethod(str.getEvaluation(), Args);
+				Object o = method.invoke(null, new Object[] {hand,HS});
+				
+				if ((Boolean) o == true){
+					break;
+				}
+			}
+			hand.bScored = true;
+			hand.HandScore = HS;
 			
+		} catch (ClassNotFoundException x) {
+			x.printStackTrace();
+		} catch (IllegalAccessException x) {
+			x.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
 		}
-		return false;
-	}
-	
-	// This method will return true if the hand is a Ace High Straight
-	public boolean isAceStraight(){
-		if (Hand.size() != 5){
-			return false;
+		return hand;
 		}
-		else if (Hand.get(0).geteRank() == eRank.Ace && Hand.get(1).geteRank() == eRank.King && Hand.get(2).geteRank() == eRank.Queen && Hand.get(3).geteRank() == eRank.Jack && Hand.get(4).geteRank() == eRank.Ten){
-			return true;
-		}
-		return false;
-	}
-	// This method will return true if the hand is a Flush
-	public boolean isFlush(){
-		if (Hand.size() != 5){
-			return false;
-		}
-		else if (Hand.get(0).geteSuit() == Hand.get(1).geteSuit() && Hand.get(0).geteSuit() == Hand.get(2).geteSuit() && Hand.get(0).geteSuit() == Hand.get(3).geteSuit() && Hand.get(0).geteSuit() == Hand.get(4).geteSuit()){
-			return true;
-		}
-		return false;
-	}
-	// This will return true if the hand is a Royal Flush
-	public boolean isRoyalFlush(){
-		if (Hand.size() != 5){
-			return false;
-		}
-		else if (isFlush() && isAceStraight()){
-			return true;
-		}
-		return false;
-	}
-	
-	   // This function will sort the hand by the rank of the card 
-	public static Comparator<Card> CardRank = new Comparator<Card>() {
-		public int compare(Card card1, Card card2) {
-
-			PokerEnums.eRank cardRank1 = card1.geteRank();
-			PokerEnums.eRank cardRank2 = card2.geteRank();
-
-		   return cardRank2.ordinal()-cardRank1.ordinal();
-	   }};
-	   // This function will sort the hand by the suit of the card 
-   public static Comparator<Card> CardSuit = new Comparator<Card>() {
-		public int compare(Card card1, Card card2) {
-		PokerEnums.eSuit cardSuit1 = card1.geteSuit();
-		PokerEnums.eSuit cardSuit2 = card2.geteSuit();
-		   return cardSuit2.ordinal()-cardSuit1.ordinal();
-	   }};
 }
-
