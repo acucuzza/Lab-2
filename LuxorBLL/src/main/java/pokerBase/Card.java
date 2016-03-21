@@ -11,24 +11,19 @@ public class Card implements Comparable {
 	private eRank eRank;
 	private int iCardNbr;
 	
+	public Card() {
+		
+	}
+
+	
 	public Card(pokerEnums.eSuit eSuit, pokerEnums.eRank eRank, int iCardNbr) {
 		super();
-		this.eSuit = eSuit;
-		this.eRank = eRank;
-		this.iCardNbr = iCardNbr;
+		this.seteSuit(eSuit);
+		this.seteRank(eRank);
+		this.setiCardNbr(iCardNbr);
 	}
 
-	public eSuit geteSuit() {
-		return eSuit;
-	}
 
-	public eRank geteRank() {
-		return eRank;
-	}
-
-	public int getiCardNbr() {
-		return iCardNbr;
-	}
 
 	public static Comparator<Card> CardRank = new Comparator<Card>() {
 
@@ -47,5 +42,35 @@ public class Card implements Comparable {
 	    Card c = (Card) o; 
 	    return c.geteRank().compareTo(this.geteRank()); 
 
+	}
+
+
+	public eRank geteRank() {
+		return eRank;
+	}
+
+
+	public void seteRank(eRank eRank) {
+		this.eRank = eRank;
+	}
+
+
+	public eSuit geteSuit() {
+		return eSuit;
+	}
+
+
+	public void seteSuit(eSuit eSuit) {
+		this.eSuit = eSuit;
+	}
+
+
+	public int getiCardNbr() {
+		return iCardNbr;
+	}
+
+
+	public void setiCardNbr(int iCardNbr) {
+		this.iCardNbr = iCardNbr;
 	}
 }

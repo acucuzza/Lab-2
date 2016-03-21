@@ -13,7 +13,7 @@ import pokerEnums.eRank;
 import pokerEnums.eSuit;
 
 public class CardTest {
-/*
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -38,5 +38,5 @@ public class CardTest {
 		assertTrue(card.getiCardNbr() == 4);
 	}
 	
-*/
+
 }
