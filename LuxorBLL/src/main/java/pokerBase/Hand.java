@@ -432,61 +432,45 @@ public class Hand {
 			public int compare(Hand h1, Hand h2) {
 
 				int result = 0;
-
 				result = h2.getHandScore().getHandStrength() - h1.getHandScore().getHandStrength();
-
 				if (result != 0) {
 					return result;
 				}
-
 				result = h2.getHandScore().getHiHand() - h1.getHandScore().getHiHand();
 				if (result != 0) {
 					return result;
 				}
-
 				result = h2.getHandScore().getLoHand() - h1.getHandScore().getLoHand();
 				if (result != 0) {
 					return result;
 				}
-
 				if (h2.getHandScore().getKickers().size() > 0) {
 					if (h1.getHandScore().getKickers().size() > 0) {
-						result = h2.getHandScore().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr()
-								- h1.getHandScore().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank()
-										.getiRankNbr();
+						result = h2.getHandScore().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr()- h1.getHandScore().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr();
 					}
 					if (result != 0) {
 						return result;
 					}
 				}
-
 				if (h2.getHandScore().getKickers().size() > 1) {
 					if (h1.getHandScore().getKickers().size() > 1) {
-						result = h2.getHandScore().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr()
-								- h1.getHandScore().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank()
-										.getiRankNbr();
+						result = h2.getHandScore().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr()- h1.getHandScore().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr();
 					}
 					if (result != 0) {
 						return result;
 					}
 				}
-
 				if (h2.getHandScore().getKickers().size() > 2) {
 					if (h1.getHandScore().getKickers().size() > 2) {
-						result = h2.getHandScore().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr()
-								- h1.getHandScore().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank()
-										.getiRankNbr();
+						result = h2.getHandScore().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr()- h1.getHandScore().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr();
 					}
 					if (result != 0) {
 						return result;
 					}
 				}
-
 				if (h2.getHandScore().getKickers().size() > 3) {
 					if (h1.getHandScore().getKickers().size() > 3) {
-						result = h2.getHandScore().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr()
-								- h1.getHandScore().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank()
-										.getiRankNbr();
+						result = h2.getHandScore().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr()- h1.getHandScore().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr();
 					}
 					if (result != 0) {
 						return result;
