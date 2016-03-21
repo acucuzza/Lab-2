@@ -1,4 +1,4 @@
-package base;
+package pokerBase;
 
 import static org.junit.Assert.*;
 
@@ -8,11 +8,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import PokerEnums.eRank;
-import PokerEnums.eSuit;
+import pokerBase.Card;
+import pokerEnums.eRank;
+import pokerEnums.eSuit;
 
 public class CardTest {
-
+/*
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -31,11 +32,11 @@ public class CardTest {
 
 	@Test
 	public void testGetters() {
-		Card card = new Card(eSuit.Clubs , eRank.Four, 4);
-		assertTrue(card.geteRank() == eRank.Four);
-		assertTrue(card.geteSuit() == eSuit.Clubs);
-		assertTrue(card.getNumberInDeck() == 4);
+		Card card = new Card(eSuit.CLUBS , eRank.FOUR, 4);
+		assertTrue(card.geteRank() == eRank.FOUR);
+		assertTrue(card.geteSuit() == eSuit.CLUBS);
+		assertTrue(card.getiCardNbr() == 4);
 	}
 	
-
+*/
 }
